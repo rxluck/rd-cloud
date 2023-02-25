@@ -1,17 +1,15 @@
-package com.rx.account.shiro.realm;
+package com.rx.sso.realm;
 
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.web.config.DefaultShiroFilterChainDefinition;
 import org.apache.shiro.spring.web.config.ShiroFilterChainDefinition;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
-@Configuration
+//@Configuration
 public class AccountRealm {
     @Bean
     public Realm realm() {
@@ -31,7 +29,7 @@ public class AccountRealm {
                return new AuthenticationInfo() {
                    @Override
                    public PrincipalCollection getPrincipals() {
-                       return new ;
+                       return null ;
                    }
 
                    @Override

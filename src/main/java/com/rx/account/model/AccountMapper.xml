@@ -7,7 +7,15 @@
         select * from account
     </select>
 
-    <insert id="saveAccount" useGeneratedKeys="true" keyProperty="id">
-        insert into account(guid, name, avatar, gender, mobileNumber, age, description, gender) values(#{guid}, #{name}, #{avatar}, #{gender}, #{mobileNumber}, #{age}, #{description}, #{gender})
+    <select id="loadAccountByMobileNumber" resultType="com.rx.account.model.Account" parameterType="string">
+        select * from account where mobileNumber = #{mobileNumber}
+    </select>
+
+    <select id="selectAccountById" resultType="com.rx.account.model.Account" parameterType="int">
+        select * from account where id = #{id}
+    </select>
+
+    <insert id="insertAccount" useGeneratedKeys="true" keyProperty="id">
+        insert into account(guid, name, avatar, mobileNumber, age, description, gender) values(#{guid}, #{name}, #{avatar}, #{mobileNumber}, #{age}, #{description}, #{gender})
     </insert>
 </mapper>

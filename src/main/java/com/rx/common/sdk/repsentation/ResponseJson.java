@@ -13,6 +13,10 @@ public class ResponseJson<T> {
         return new ResponseJson(200, "ok");
     }
 
+    public static ResponseJson success(Object data) {
+        return new ResponseJson(200, data);
+    }
+
     public int getCode() {
         return code;
     }

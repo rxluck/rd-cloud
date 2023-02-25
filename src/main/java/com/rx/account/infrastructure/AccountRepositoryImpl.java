@@ -20,7 +20,12 @@ public class AccountRepositoryImpl implements AccountRepository {
     }
 
     @Override
-    public void saveAccount(Account account) {
-        accountMapper.saveAccount(account);
+    public void insertAccount(Account account) {
+        accountMapper.insertAccount(account);
+    }
+
+    @Override
+    public Account loadAccountByMobileNumber(String mobileNumber) {
+        return accountMapper.loadAccountByMobileNumber(mobileNumber);
     }
 }

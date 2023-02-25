@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.rx.account")
+@MapperScan( value = {"com.rx.account.model"})
 public class ConsoleApplication {
 
     public static void main(String[] args) {

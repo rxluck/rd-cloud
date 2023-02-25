@@ -4,37 +4,29 @@ import com.rx.account.model.Account;
 import com.rx.account.sdk.command.AccountCreatedOrUpdateCommand;
 import com.rx.account.service.AccountService;
 import com.rx.common.sdk.repsentation.ResponseJson;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
 @RestController
-@RequestMapping("api/v1/accounts")
 public class AccountController {
 
     @Resource
     private AccountService accountService;
 
-    @GetMapping("{accountId}")
+    @GetMapping("api/v1/accounts/{accountId}")
     public ResponseJson get(@PathVariable Long accountId) {
         Account account = accountService.obtainAccount(accountId);
-        return ResponseJson.success();
+        return ResponseJson.success(account);
     }
 
-    @PostMapping("{accountId}")
-    public void saveOrUpdate(@PathVariable Long accountId, @RequestBody AccountCreatedOrUpdateCommand command) {
-        accountService.saveOrUpdateAccount(command);
+    @PostMapping("registry")
+    public void registry(@RequestBody AccountCreatedOrUpdateCommand command) {
+        accountService.registry(command);
     }
 
     @GetMapping("get")
     public void get() {
         System.out.println("get...");
-        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken("123", "456", true);
-        Subject subject = SecurityUtils.getSubject();
-        System.out.println("subject:" + subject);
     }
-
 }

@@ -6,6 +6,8 @@ public interface AccountRepository {
 
     List<Account> loadAccounts();
 
-    void saveAccount(Account account);
+    void insertAccount(Account account);
+
+    Account loadAccountByMobileNumber(String mobileNumber);
 
 }

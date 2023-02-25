@@ -1,7 +1,7 @@
 package com.rx.account.service;
 
 import com.rx.account.model.Account;
-import com.rx.account.model.AccountRepository;
+import com.rx.account.model.AccountMapper;
 import com.rx.account.sdk.command.AccountCreatedOrUpdateCommand;
 import org.springframework.stereotype.Service;
 
@@ -12,16 +12,17 @@ import java.util.List;
 public class AccountService {
 
     @Resource
-    private AccountRepository accountRepository;
+    private AccountMapper accountMapper;
+
     public Account obtainAccount(Long accountId) {
-        return new Account();
+        return accountMapper.selectAccountById(accountId);
     }
 
     public List<Account> obtainAccounts() {
-        return accountRepository.loadAccounts();
+        return accountMapper.loadAccounts();
     }
 
-    public void saveOrUpdateAccount(AccountCreatedOrUpdateCommand command) {
+    public void registry(AccountCreatedOrUpdateCommand command) {
         String name = command.getName();
         Integer age = command.getAge();
         String avatar = command.getAvatar();
@@ -30,14 +31,14 @@ public class AccountService {
         String description = command.getDescription();
 
         Account account = new Account(null, 123456L, name, age, avatar, mobileNumber, description, gender);
-        accountRepository.saveAccount(account);
+        accountMapper.insertAccount(account);
     }
 
     public void registry() {
 
     }
 
-    public void obtainAccountByUserNameAndPassword() {
-
+    public Account obtainAccountByMobileNumber(String mobileNumber) {
+        return accountMapper.loadAccountByMobileNumber(mobileNumber);
     }
 }
